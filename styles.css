@@ -672,6 +672,187 @@ body {
     }
 }
 
+/* Enhanced Device Optimization */
+
+/* Large Desktop (1200px and above) */
+@media (min-width: 1200px) {
+    .sidebar {
+        width: 18vw;
+        min-width: 300px;
+    }
+    
+    .main-content {
+        margin-left: 18vw;
+    }
+    
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Small Desktop/Large Tablet (992px to 1024px) */
+@media (max-width: 1024px) and (min-width: 992px) {
+    .sidebar {
+        width: 22vw;
+        min-width: 260px;
+    }
+    
+    .main-content {
+        margin-left: 22vw;
+    }
+}
+
+/* Portrait Tablet (768px to 992px) */
+@media (max-width: 992px) and (min-width: 768px) {
+    .sidebar {
+        width: 30vw;
+        min-width: 280px;
+    }
+    
+    .main-content {
+        margin-left: 30vw;
+    }
+    
+    .sidebar-content {
+        padding: 1.8rem 1.2rem;
+    }
+    
+    .profile-image {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .skill-tag {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
+    }
+}
+
+/* Large Phone/Small Tablet (480px to 768px) */
+@media (max-width: 768px) and (min-width: 480px) {
+    .sidebar-content {
+        padding: 1.2rem;
+    }
+    
+    .profile-image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .social-link {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+    }
+    
+    .skill-tag {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .blog-simple-link {
+        font-size: 1.1rem;
+    }
+}
+
+/* Very Small Phones (320px to 480px) */
+@media (max-width: 480px) {
+    .sidebar-content {
+        padding: 0.8rem;
+    }
+    
+    .profile-name {
+        font-size: 1.1rem;
+    }
+    
+    .profile-title {
+        font-size: 0.8rem;
+    }
+    
+    .social-link {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    .sidebar-skills h3 {
+        font-size: 0.9rem;
+    }
+    
+    .skill-tag {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .blog-simple-link {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+}
+
+/* Ultra Small Screens (below 320px) */
+@media (max-width: 320px) {
+    .sidebar-content {
+        padding: 0.6rem;
+    }
+    
+    .profile-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .profile-name {
+        font-size: 1rem;
+    }
+    
+    .social-link {
+        width: 25px;
+        height: 25px;
+        font-size: 0.7rem;
+    }
+    
+    .skill-tag {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.3rem;
+    }
+    
+    .container {
+        padding: 0 0.5rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .social-link {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .skill-tag {
+        min-height: 32px;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .blog-simple-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .profile-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
