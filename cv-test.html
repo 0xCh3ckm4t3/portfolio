@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Viewer Test</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #111;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #1f2937;
+            border-radius: 8px;
+            border: 1px solid #374151;
+        }
+        
+        .test-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #2563eb;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .test-link:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        .pdf-embed {
+            width: 100%;
+            height: 800px;
+            border: none;
+            border-radius: 8px;
+            background: #fff;
+            margin: 20px 0;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .status.success { background: #065f46; }
+        .status.error { background: #7f1d1d; }
+        .status.info { background: #1e40af; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>CV Viewer Test Page</h1>
+        
+        <div class="test-section">
+            <h2>PDF File Status</h2>
+            <div id="fileStatus" class="status info">Checking PDF file...</div>
+            
+            <div style="margin-top: 20px;">
+                <a href="Dushyant_Hamal_CV.pdf" target="_blank" class="test-link">
+                    <i class="fas fa-file-pdf"></i>
+                    Open PDF in New Tab
+                </a>
+                
+                <a href="Dushyant_Hamal_CV.pdf" download class="test-link">
+                    <i class="fas fa-download"></i>
+                    Download PDF
+                </a>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Embedded PDF Viewer</h2>
+            <div id="browserStatus" class="status info">Checking browser PDF support...</div>
+            
+            <iframe 
+                src="Dushyant_Hamal_CV.pdf" 
+                class="pdf-embed"
+                type="application/pdf">
+                <p>Your browser does not support PDFs. 
+                   <a href="Dushyant_Hamal_CV.pdf" target="_blank">Download the PDF</a> to view it.
+                </p>
+            </iframe>
+        </div>
+        
+        <div class="test-section">
+            <h2>Alternative PDF Viewer (using Google Docs)</h2>
+            <iframe 
+                src="https://docs.google.com/viewer?url=http://localhost:8000/Dushyant_Hamal_CV.pdf&embedded=true" 
+                class="pdf-embed"
+                frameborder="0">
+                <p>Google Docs viewer not available</p>
+            </iframe>
+        </div>
+    </div>
+    
+    <script>
+        // Check if PDF file exists
+        fetch('Dushyant_Hamal_CV.pdf')
+            .then(response => {
+                const statusDiv = document.getElementById('fileStatus');
+                if (response.ok) {
+                    statusDiv.textContent = '✅ PDF file found and accessible';
+                    statusDiv.className = 'status success';
+                } else {
+                    statusDiv.textContent = '❌ PDF file not found (404)';
+                    statusDiv.className = 'status error';
+                }
+            })
+            .catch(error => {
+                const statusDiv = document.getElementById('fileStatus');
+                statusDiv.textContent = '❌ Error checking PDF file: ' + error.message;
+                statusDiv.className = 'status error';
+            });
+        
+        // Check browser PDF support
+        const browserStatusDiv = document.getElementById('browserStatus');
+        const userAgent = navigator.userAgent;
+        
+        if (userAgent.includes('Chrome')) {
+            browserStatusDiv.textContent = '✅ Chrome detected - PDF embedding supported';
+            browserStatusDiv.className = 'status success';
+        } else if (userAgent.includes('Firefox')) {
+            browserStatusDiv.textContent = '✅ Firefox detected - PDF embedding supported';
+            browserStatusDiv.className = 'status success';
+        } else if (userAgent.includes('Safari')) {
+            browserStatusDiv.textContent = '⚠️ Safari detected - PDF embedding may not work reliably';
+            browserStatusDiv.className = 'status info';
+        } else {
+            browserStatusDiv.textContent = '⚠️ Unknown browser - PDF embedding may not work';
+            browserStatusDiv.className = 'status info';
+        }
+    </script>
+</body>
+</html>

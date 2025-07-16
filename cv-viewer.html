@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced PDF Viewer</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #111;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .viewer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #1f2937;
+            border-radius: 8px;
+            border: 1px solid #374151;
+        }
+        
+        .viewer-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #2563eb;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        .btn.secondary {
+            background: #6b7280;
+        }
+        
+        .btn.secondary:hover {
+            background: #4b5563;
+        }
+        
+        .viewer-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .method-card {
+            background: #1f2937;
+            border-radius: 8px;
+            border: 1px solid #374151;
+            padding: 20px;
+        }
+        
+        .method-card h3 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+        
+        .pdf-viewer {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+            background: #fff;
+            margin: 15px 0;
+        }
+        
+        .fallback-content {
+            text-align: center;
+            padding: 40px;
+            background: #374151;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .fallback-content i {
+            font-size: 3rem;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .viewer-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .viewer-controls {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .viewer-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .pdf-viewer {
+                height: 500px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="viewer-container">
+        <div class="viewer-header">
+            <h1>Dushyant Hamal - Resume/CV</h1>
+            <div class="viewer-controls">
+                <a href="Dushyant_Hamal_CV.pdf" target="_blank" class="btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    Open in New Tab
+                </a>
+                <a href="Dushyant_Hamal_CV.pdf" download class="btn">
+                    <i class="fas fa-download"></i>
+                    Download PDF
+                </a>
+                <a href="index.html" class="btn secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Portfolio
+                </a>
+            </div>
+        </div>
+        
+        <div class="viewer-methods">
+            <div class="method-card">
+                <h3><i class="fas fa-file-pdf"></i> Direct PDF Embedding</h3>
+                <p>Standard PDF embedding using iframe (works in most modern browsers)</p>
+                <iframe 
+                    src="Dushyant_Hamal_CV.pdf" 
+                    class="pdf-viewer"
+                    type="application/pdf">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>PDF embedding not supported in this browser</p>
+                        <a href="Dushyant_Hamal_CV.pdf" target="_blank" class="btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            Open PDF in New Tab
+                        </a>
+                    </div>
+                </iframe>
+            </div>
+            
+            <div class="method-card">
+                <h3><i class="fab fa-google"></i> Google Docs Viewer</h3>
+                <p>Alternative viewer using Google Docs (requires internet connection)</p>
+                <iframe 
+                    src="https://docs.google.com/viewer?url=http://localhost:8000/Dushyant_Hamal_CV.pdf&embedded=true" 
+                    class="pdf-viewer"
+                    frameborder="0">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Google Docs viewer not available</p>
+                        <a href="Dushyant_Hamal_CV.pdf" target="_blank" class="btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            Open PDF in New Tab
+                        </a>
+                    </div>
+                </iframe>
+            </div>
+        </div>
+        
+        <div class="method-card">
+            <h3><i class="fas fa-code"></i> PDF.js Viewer</h3>
+            <p>Mozilla's PDF.js for universal browser support</p>
+            <iframe 
+                src="https://mozilla.github.io/pdf.js/web/viewer.html?file=http://localhost:8000/Dushyant_Hamal_CV.pdf" 
+                class="pdf-viewer"
+                style="height: 700px;"
+                frameborder="0">
+                <div class="fallback-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>PDF.js viewer not available</p>
+                    <a href="Dushyant_Hamal_CV.pdf" target="_blank" class="btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        Open PDF in New Tab
+                    </a>
+                </div>
+            </iframe>
+        </div>
+    </div>
+    
+    <script>
+        // Check PDF file availability
+        fetch('Dushyant_Hamal_CV.pdf')
+            .then(response => {
+                if (!response.ok) {
+                    // Show error message if PDF not found
+                    document.querySelectorAll('.pdf-viewer').forEach(viewer => {
+                        viewer.style.display = 'none';
+                    });
+                    
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'fallback-content';
+                    errorDiv.innerHTML = `
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>PDF File Not Found</h3>
+                        <p>The CV file could not be loaded. Please check that the file exists.</p>
+                    `;
+                    document.querySelector('.viewer-container').appendChild(errorDiv);
+                }
+            })
+            .catch(error => {
+                console.error('Error checking PDF file:', error);
+            });
+    </script>
+</body>
+</html>
